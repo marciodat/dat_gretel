@@ -12,6 +12,7 @@ module Gretel
       semantic: false,
       class: "breadcrumbs",
       current_class: "current",
+      fragment_class: "",
       pretext_class: "pretext",
       posttext_class: "posttext",
       id: nil
@@ -21,7 +22,7 @@ module Gretel
       inline: { container_tag: :div, separator: " &rsaquo; " },
       ol: { container_tag: :ol, fragment_tag: :li },
       ul: { container_tag: :ul, fragment_tag: :li },
-      bootstrap: { container_tag: :ol, fragment_tag: :li, class: "breadcrumb", current_class: "active" },
+      bootstrap: { container_tag: :ol, fragment_tag: :li, class: "breadcrumb", fragment_class: "breadcrumb-item", current_class: "breadcrumb-item active" },
       foundation5: { container_tag: :ul, fragment_tag: :li, class: "breadcrumbs", current_class: "current" }
     }
 
@@ -81,7 +82,7 @@ module Gretel
 
       # Handle autoroot
       if options[:autoroot] && out.map(&:key).exclude?(:root) && Gretel::Crumbs.crumb_defined?(:root)
-        out.unshift *Gretel::Crumb.new(context, :root).links
+        out.unshift(*Gretel::Crumb.new(context, :root).links)
       end
 
       # Set current link to actual path
@@ -114,7 +115,7 @@ module Gretel
         links = crumb.links.dup
 
         # Get parent links
-        links.unshift *parent_links_for(crumb)
+        links.unshift(*parent_links_for(crumb))
 
         links
       else
@@ -126,7 +127,7 @@ module Gretel
     def parent_links_for(crumb)
       links = []
       while crumb = crumb.parent
-        links.unshift *crumb.links
+        links.unshift(*crumb.links)
       end
       links
     end
@@ -171,7 +172,11 @@ module Gretel
 
         # Loop through all but the last (current) link and build HTML of the fragments
         fragments = links[0..-2].map do |link|
-          render_fragment(options[:fragment_tag], link.text, link.url, options[:semantic])
+          if options[:fragment_class].present?
+            render_fragment(options[:fragment_tag], link.text, link.url, options[:semantic], class: options[:fragment_class])
+          else
+            render_fragment(options[:fragment_tag], link.text, link.url, options[:semantic])
+          end
         end
 
         # The current link is handled a little differently, and is only linked if specified in the options

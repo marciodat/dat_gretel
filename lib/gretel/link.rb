@@ -1,10 +1,11 @@
 module Gretel
   class Link
-    attr_accessor :key, :text, :url, :options
+    attr_accessor :key, :text, :url, :options, :current
 
     def initialize(key, text, url, options = {})
       # Use accessors so plugins can override their behavior
       self.key, self.text, self.url, self.options = key, text, url, options
+      self.current = false
     end
 
     # Sets current so +current?+ will return +true+.
@@ -14,7 +15,7 @@ module Gretel
 
     # Returns +true+ if this is the last link in the breadcrumb trail.
     def current?
-      !!@current
+      !!@current 
     end
 
     # Enables accessors and predicate methods for values in the +options+ hash.

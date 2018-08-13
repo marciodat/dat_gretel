@@ -2,6 +2,7 @@ module Gretel
   class Crumb
     # Initializes a new crumb from the given +key+.
     # It finds the breadcrumb created in +Gretel::Crumbs.layout+ and renders the block using the arguments supplied in +args+.
+    
     def initialize(context, key, *args)
       if key.class.respond_to?(:model_name)
         # Enables calling `breadcrumb @product` instead of `breadcrumb :product, @product`
@@ -13,7 +14,8 @@ module Gretel
       raise ArgumentError, "Breadcrumb :#{key} not found." unless block
       @key = key
       @context = context
-      instance_exec *args, &block
+      @parent = nil
+      instance_exec(*args, &block)
     end
 
     # Sets link of the breadcrumb.
@@ -48,7 +50,7 @@ module Gretel
     # Or short, which will infer the key from the model's `model_name`:
     #   parent category
     def parent(*args)
-      return @parent if args.empty?
+      return @parent if args.empty? 
       key = args.shift
 
       @parent = Gretel::Crumb.new(context, key, *args)

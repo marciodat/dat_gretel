@@ -37,7 +37,7 @@ module Gretel
 
     # Whether to suppress deprecation warnings.
     def suppress_deprecation_warnings?
-      !!@suppress_deprecation_warnings
+      !!@suppress_deprecation_warnings if defined? @suppress_deprecation_warnings
     end
 
     # Sets whether to suppress deprecation warnings.

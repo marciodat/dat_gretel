@@ -46,7 +46,7 @@ module Gretel
 
       # Returns true if the breadcrumb configuration files have been loaded.
       def loaded?
-        !!@loaded
+        !!@loaded if defined? @loaded
       end
 
       # List of breadcrumb configuration files.
