@@ -1,4 +1,4 @@
-module Gretel
+module DatGretel
   class Crumb
     # Initializes a new crumb from the given +key+.
     # It finds the breadcrumb created in +Gretel::Crumbs.layout+ and renders the block using the arguments supplied in +args+.
@@ -10,7 +10,7 @@ module Gretel
         key = key.class.model_name.to_s.underscore.to_sym
       end
 
-      block = Gretel::Crumbs.crumbs[key]
+      block = DatGretel::Crumbs.crumbs[key]
       raise ArgumentError, "Breadcrumb :#{key} not found." unless block
       @key = key
       @context = context
@@ -32,7 +32,7 @@ module Gretel
       # Transform objects to real paths.
       url = url_for(url) if url
       
-      links << Gretel::Link.new(key, text, url, options)
+      links << DatGretel::Link.new(key, text, url, options)
     end
 
     # Holds all of the breadcrumb's links as a breadcrumb can have multiple links.
@@ -53,7 +53,7 @@ module Gretel
       return @parent if args.empty? 
       key = args.shift
 
-      @parent = Gretel::Crumb.new(context, key, *args)
+      @parent = DatGretel::Crumb.new(context, key, *args)
     end
 
     # Key of the breadcrumb.

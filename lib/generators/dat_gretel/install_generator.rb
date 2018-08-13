@@ -1,6 +1,6 @@
 require 'rails/generators'
 
-module Gretel
+module DatGretel
   class InstallGenerator < Rails::Generators::Base
     source_root File.expand_path('../templates', __FILE__)
     

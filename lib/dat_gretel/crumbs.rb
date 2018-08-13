@@ -1,4 +1,4 @@
-module Gretel
+module DatGretel
   module Crumbs
     class << self
       include Resettable
@@ -39,7 +39,7 @@ module Gretel
       # Returns true if a breadcrumbs reload is needed based on configuration file changes.
       def reload?
         return true unless loaded?
-        return false unless Gretel.reload_environments.include?(Rails.env)
+        return false unless DatGretel.reload_environments.include?(Rails.env)
 
         loaded_file_mtimes != breadcrumb_files.map { |file| File.mtime(file) }
       end
@@ -51,7 +51,7 @@ module Gretel
 
       # List of breadcrumb configuration files.
       def breadcrumb_files
-        Dir[*Gretel.breadcrumb_paths]
+        Dir[*DatGretel.breadcrumb_paths]
       end
 
     private

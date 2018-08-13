@@ -1,4 +1,4 @@
-module Gretel
+module DatGretel
   module Resettable
     # Resets all instance variables and calls +reset!+ on all child modules and
     # classes. Used for testing.

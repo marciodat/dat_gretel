@@ -1,4 +1,4 @@
-module Gretel
+module DatGretel
   module ViewHelpers
     # Sets the current breadcrumb to be rendered elsewhere. Put it somewhere in the view, preferably in the top, before you render any breadcrumbs HTML:
     # 
@@ -11,7 +11,7 @@ module Gretel
       if key.nil? || key.is_a?(Hash)
         raise ArgumentError, "The `breadcrumb` method was called with #{key.inspect} as the key. This method is used to set the breadcrumb. Maybe you meant to call the `breadcrumbs` method (with an 's' in the end) which is used to render the breadcrumbs?"
       end
-      @_gretel_renderer = Gretel::Renderer.new(self, key, *args)
+      @_gretel_renderer = DatGretel::Renderer.new(self, key, *args)
     end
 
     # Yields a block where inside the block you have a different breadcrumb than outside.
@@ -27,7 +27,7 @@ module Gretel
     #   <%= breadcrumbs # shows the :about breadcrumb %>
     def with_breadcrumb(key, *args, &block)
       original_renderer = @_gretel_renderer
-      @_gretel_renderer = Gretel::Renderer.new(self, key, *args)
+      @_gretel_renderer = DatGretel::Renderer.new(self, key, *args)
       yield
       @_gretel_renderer = original_renderer
     end
@@ -65,7 +65,7 @@ module Gretel
 
     # Reference to the Gretel breadcrumbs renderer.
     def gretel_renderer
-      @_gretel_renderer ||= Gretel::Renderer.new(self, nil)
+      @_gretel_renderer ||= DatGretel::Renderer.new(self, nil)
     end
   end
 end

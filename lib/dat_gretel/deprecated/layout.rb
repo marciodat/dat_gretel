@@ -1,4 +1,4 @@
-Gretel::Crumbs.class_eval do
+DatGretel::Crumbs.class_eval do
   class << self
     # Was used to lay out breadcrumbs in an initializer. Deprecated since v2.1.0
     # and removed in v3.0.0. Will raise an exception if used. Put breadcrumbs in

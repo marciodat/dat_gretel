@@ -1,13 +1,13 @@
-require 'gretel/version'
-require 'gretel/resettable'
-require 'gretel/crumbs'
-require 'gretel/crumb'
-require 'gretel/link'
-require 'gretel/renderer'
-require 'gretel/view_helpers'
-require 'gretel/deprecated'
+require 'dat_gretel/version'
+require 'dat_gretel/resettable'
+require 'dat_gretel/crumbs'
+require 'dat_gretel/crumb'
+require 'dat_gretel/link'
+require 'dat_gretel/renderer'
+require 'dat_gretel/view_helpers'
+require 'dat_gretel/deprecated'
 
-module Gretel
+module DatGretel
   class << self
     include Resettable
 
@@ -62,7 +62,7 @@ module Gretel
     # 
     #   Gretel.register_style :ul, { container_tag: :ul, fragment_tag: :li }
     def register_style(style, options)
-      Gretel::Renderer.register_style style, options
+      DatGretel::Renderer.register_style style, options
     end
 
     # Sets the Rails environment names with automatic configuration reload. Default is +["development"]+.
@@ -79,4 +79,4 @@ module Gretel
   end
 end
 
-ActionView::Base.send :include, Gretel::ViewHelpers
+ActionView::Base.send :include, DatGretel::ViewHelpers

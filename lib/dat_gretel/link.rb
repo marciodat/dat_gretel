@@ -1,4 +1,4 @@
-module Gretel
+module DatGretel
   class Link
     attr_accessor :key, :text, :url, :options, :current
 

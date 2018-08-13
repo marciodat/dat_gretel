@@ -1,4 +1,4 @@
-module Gretel
+module DatGretel
   class Renderer
     DEFAULT_OPTIONS = {
       style: :inline,
@@ -81,8 +81,8 @@ module Gretel
       out = links.dup
 
       # Handle autoroot
-      if options[:autoroot] && out.map(&:key).exclude?(:root) && Gretel::Crumbs.crumb_defined?(:root)
-        out.unshift(*Gretel::Crumb.new(context, :root).links)
+      if options[:autoroot] && out.map(&:key).exclude?(:root) && DatGretel::Crumbs.crumb_defined?(:root)
+        out.unshift(*DatGretel::Crumb.new(context, :root).links)
       end
 
       # Set current link to actual path
@@ -106,10 +106,10 @@ module Gretel
     def links
       @links ||= if @breadcrumb_key.present?
         # Reload breadcrumbs configuration if needed
-        Gretel::Crumbs.reload_if_needed
+        DatGretel::Crumbs.reload_if_needed
 
         # Get breadcrumb set by the `breadcrumb` method
-        crumb = Gretel::Crumb.new(context, breadcrumb_key, *breadcrumb_args)
+        crumb = DatGretel::Crumb.new(context, breadcrumb_key, *breadcrumb_args)
 
         # Links of first crumb
         links = crumb.links.dup

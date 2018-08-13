@@ -1,3 +1,3 @@
-module Gretel
+module DatGretel
   VERSION = "4.0.0"
 end
