@@ -1,6 +1,24 @@
-<a href="http://travis-ci.org/lassebunk/gretel"><img src="https://secure.travis-ci.org/lassebunk/gretel.png" alt="Build Status" /></a>
+<a href="https://travis-ci.org/marciodat/gretel"><img src="https://travis-ci.org/marciodat/gretel.svg" alt="Build Status" /></a>
 
 <img src="http://i.imgur.com/CAKEaBM.png" alt="Handle breadcrumb trails... like a boss :)" />
+
+This is an update of the orginal `gretel` gem with the following changes:
+
+- Added `fragment_class`: allows the user to specify classes for framents
+
+- Updated bootstrap default to the latest version
+
+- Updated rails to the latest version 
+
+- Updated tests
+
+Due to some changes on the latest rails version, the gem compatibility has been changed:
+
+- ruby = 2.2.2 / rails >= 4.0.x
+
+- ruby = 2.5.1 / rails >= 5.2.x
+
+---
 
 ([TL;DR](http://i.imgur.com/nH25yiH.png)) Gretel is a [Ruby on Rails](http://rubyonrails.org) plugin that makes it easy yet flexible to create breadcrumbs.
 It is based around the idea that breadcrumbs are a concern of the view, so you define a set of breadcrumbs in *config/breadcrumbs.rb* (or multiple files; see below) and specify in the view which breadcrumb to use.
@@ -92,6 +110,7 @@ Option                   | Description                                          
 :id                      | ID for the breadcrumbs container.                                                                                          | None
 :class                   | CSS class for the breadcrumbs container. Can be set to `nil` for no class.                                                 | `"breadcrumbs"`
 :current_class           | CSS class for the current link or span. Can be set to `nil` for no class.                                                  | `"current"`
+:fragment_class          | CSS class for the fragment link or span. Can be set to `nil` for no class.                                                 | `"breadcrumb-item"`
 :pretext_class           | CSS class for the pretext, if given. Can be set to `nil` for no class.                                                     | `"pretext"`
 :posttext_class          | CSS class for the posttext, if given. Can be set to `nil` for no class.                                                    | `"posttext"`
 :container_tag           | Tag type that contains the breadcrumbs.                                                                                    | `:div`
