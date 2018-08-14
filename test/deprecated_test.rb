@@ -1,13 +1,13 @@
 require 'test_helper'
 
 class DeprecatedTest < ActionView::TestCase
-  include Gretel::ViewHelpers
+  include DatGretel::ViewHelpers
   fixtures :all
   helper :application
 
   setup do
-    Gretel.reset!
-    Gretel.suppress_deprecation_warnings = true
+    DatGretel.reset!
+    DatGretel.suppress_deprecation_warnings = true
   end
 
   test "show root alone" do
@@ -18,7 +18,7 @@ class DeprecatedTest < ActionView::TestCase
 
   test "deprecated configuration block" do
     assert_raises RuntimeError do
-      Gretel::Crumbs.layout do
+      DatGretel::Crumbs.layout do
       end
     end
   end

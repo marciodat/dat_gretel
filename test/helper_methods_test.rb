@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class HelperMethodsTest < ActionView::TestCase
-  include Gretel::ViewHelpers
+  include DatGretel::ViewHelpers
 
   self.fixture_path = File.expand_path("../../test/fixtures", __FILE__)
   fixtures :all
@@ -9,7 +9,7 @@ class HelperMethodsTest < ActionView::TestCase
   helper :application
 
   setup do
-    Gretel.reset!
+    DatGretel.reset!
   end
 
   def itemscope_value
@@ -390,7 +390,7 @@ class HelperMethodsTest < ActionView::TestCase
   end
 
   test "register style" do
-    Gretel.register_style :test_style, { container_tag: :one, fragment_tag: :two }
+    DatGretel.register_style :test_style, { container_tag: :one, fragment_tag: :two }
 
     breadcrumb :basic
 
@@ -402,7 +402,7 @@ class HelperMethodsTest < ActionView::TestCase
 
   test "reload configuration when file is changed" do
     path = setup_loading_from_tmp_folder
-    Gretel.reload_environments << "test"
+    DatGretel.reload_environments << "test"
 
     File.open(path.join("site.rb"), "w") do |f|
       f.write <<-EOT
@@ -437,7 +437,7 @@ class HelperMethodsTest < ActionView::TestCase
 
   test "reload configuration when file is added" do
     path = setup_loading_from_tmp_folder
-    Gretel.reload_environments << "test"
+    DatGretel.reload_environments << "test"
 
     File.open(path.join("site.rb"), "w") do |f|
       f.write <<-EOT
@@ -466,7 +466,7 @@ class HelperMethodsTest < ActionView::TestCase
 
   test "reload configuration when file is deleted" do
     path = setup_loading_from_tmp_folder
-    Gretel.reload_environments << "test"
+    DatGretel.reload_environments << "test"
 
     File.open(path.join("site.rb"), "w") do |f|
       f.write <<-EOT
@@ -505,7 +505,7 @@ class HelperMethodsTest < ActionView::TestCase
   test "reloads only in development environment" do
     path = setup_loading_from_tmp_folder
 
-    assert_equal ["development"], Gretel.reload_environments
+    assert_equal ["development"], DatGretel.reload_environments
 
     File.open(path.join("site.rb"), "w") do |f|
       f.write <<-EOT
@@ -545,7 +545,7 @@ private
     FileUtils.rm_rf path
     FileUtils.mkdir_p path
 
-    Gretel.breadcrumb_paths = [path.join("*.rb")]
+    DatGretel.breadcrumb_paths = [path.join("*.rb")]
 
     path
   end
