@@ -2,7 +2,7 @@
 
 <img src="http://i.imgur.com/CAKEaBM.png" alt="Handle breadcrumb trails... like a boss :)" />
 
-This is an update of the orginal `gretel` gem with the following changes:
+This is an update of the amazing `gretel` gem with the following changes:
 
 - Added `fragment_class`: allows the user to specify classes for framents
 
@@ -31,7 +31,7 @@ Have fun! And please do write, if you (dis)like it – [lassebunk@gmail.com](mai
 In your *Gemfile*:
 
 ```ruby
-gem "gretel"
+gem "dat_gretel"
 ```
 
 And run:
@@ -45,7 +45,7 @@ $ bundle install
 Start by generating breadcrumbs configuration file:
 
 ```bash
-$ rails generate gretel:install
+$ rails generate dat_gretel:install
 ```
 
 Then, in *config/breadcrumbs.rb*:
@@ -310,46 +310,12 @@ end
 
 ### Automatic reloading of breadcrumb configuration files
 
-Since Gretel version 2.1.0, the breadcrumb configuration files are now reloaded in the Rails development environment if they change. In other environments, like production, the files are loaded once, when first needed.
+The breadcrumb configuration files are now reloaded in the Rails development environment if they change. In other environments, like production, the files are loaded once, when first needed.
 
-### Setting breadcrumb trails
-
-The [gretel-trails](https://github.com/lassebunk/gretel-trails) gem can handle adding and hiding trails from the URL automatically. This makes it possible to link back to a different breadcrumb trail than the one specified in your breadcrumb, for example if you have a
-store with products that have a default parent to the category breadcrumb, but when visiting from the reviews section, you want to link back to the reviews instead.
-
-You can apply trails to select links by adding a simple JS selector (`js-append-trail` or another you choose), and after each page load it hides the trail from the URL, so the server sees it but the users don't.
-
-Check out the gem [here](https://github.com/lassebunk/gretel-trails).
-
-
-## Upgrading from version 2.0 or below
-
-Instead of using the initializer that in Gretel version 2.0 and below required restarting the application after breadcrumb configuration changes, the configuration of the breadcrumbs is now loaded from `config/breadcrumbs.rb` (and `config/breadcrumbs/*.rb` if you want to split your breadcrumbs configuration across multiple files).
-In the Rails development environment, these files are automatically reloaded when changed.
-
-Using the initializer (e.g. `config/initializers/breadcrumbs.rb`) was deprecated in Gretel version 2.1.0 and removed in version 3.0. It raises an error if you try to use it.
-
-To update to the latest version of Gretel, use `bundle update gretel`. Then remove the `Gretel::Crumbs.layout do ... end` block, so instead of:
-
-```ruby
-Gretel::Crumbs.layout do
-  crumb :root do
-    link "Home", root_path
-  end
-end
-```
-
-in the initializer, you write:
-
-```ruby
-crumb :root do
-  link "Home", root_path
-end
-```
-
-in `config/breadcrumbs.rb`.
 
 ## Documentation
+
+The original gretel documentation is still valid and can be found at:
 
 * [Full documentation](http://rubydoc.info/gems/gretel)
 * [Changelog](https://github.com/lassebunk/gretel/blob/master/CHANGELOG.md)
@@ -379,9 +345,10 @@ Thanks.
 
 ## Contributors
 
-Gretel was created by [@lassebunk](https://github.com/lassebunk) and is maintained by [@WilHall](https://github.com/WilHall).
+Gretel was created by [@lassebunk](https://github.com/lassebunk).
 
-[See the list of contributors](https://github.com/lassebunk/gretel/graphs/contributors)
+This fork implements some updates/ fixes and is maintained by [@marciodat](https://github.com/marciodat).
+
 
 ## And then
 
@@ -389,4 +356,4 @@ Gretel was created by [@lassebunk](https://github.com/lassebunk) and is maintain
 
 Have fun!
 
-Copyright (c) 2010-2016 [Lasse Bunk](http://lassebunk.dk), released under the MIT license
+Copyright (c) 2010-2016 [Lasse Bunk](http://lassebunk.dk) / [Marcio Silva](https://github.com/marciodat), released under the MIT license

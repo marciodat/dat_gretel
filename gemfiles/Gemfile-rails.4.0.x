@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem "gretel",  :path => ".."
+gem "dat_gretel",  :path => ".."
 
 gem "rails", "~> 4.0.0"
 gem "sqlite3"
